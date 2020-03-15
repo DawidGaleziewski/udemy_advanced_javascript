@@ -70,3 +70,23 @@ universe.makroverse.miniverse.level = 'gotcha!';
 console.log(
   `Original miniverse: ${universe.makroverse.miniverse.level}, Copied universe: ${universeClone.makroverse.miniverse.level}`
 ); // Both will change as we only did the shallow copy. Objects inside the objects still reference the same thing in memory!
+
+// ! deep cloning
+var superOrigininal = {
+  a: '1',
+  b: {
+    c: {
+      d: 2,
+      e: 3
+    }
+  }
+};
+
+// We firsh change the whole object into a string and then conver it back into a object
+var superClone = JSON.parse(JSON.stringify(superOrigininal));
+
+superOrigininal.b.c.d = 'Yikes!';
+console.log(
+  `superOrigininal.b.c.d: ${superOrigininal.b.c.d}, superClone.b.c.d: ${superClone.b.c.d}`
+); // All levels of the object were cloned/
+// ! deep cloning of a object can have a performance implication! It should be done rarly and most oftent you are doing something wrong if you are deep cloning
