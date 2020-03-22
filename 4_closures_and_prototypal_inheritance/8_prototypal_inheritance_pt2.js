@@ -40,3 +40,23 @@ console.log(lizard.fight()) // fight is not inherited from dragon. As this objec
 
 // We can check object of what it is a prototype
 console.log(dragon.isPrototypeOf(lizard))
+
+for (let prop in lizard){
+    console.log('general:',prop) // We can see properties that were inherited from dragon
+
+    if(lizard.hasOwnProperty(prop)){ //We can see props uniq to lizard object
+        console.log('has own prop:', prop) 
+    }
+}
+
+console.log(lizard);
+
+// !Important - using __proto__ this way is for demonstration it should not be used this way in production code. This is band for performance
+
+// USES OF prototypes:
+// We can have methods pointing to the same places in memory, beeing more efficiant. ie hasOwnProperty only lives in one place in memory
+
+// When we get a function not defined error the js goes all the way up the inheritance chain to the global object searching for it.
+
+// When we go past the base Object js returns null as to say there is nothing more beyond base object
+console.log(lizard.__proto__.__proto__.__proto__); //null - end of the chain
